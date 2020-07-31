@@ -107,16 +107,14 @@ $escrivaninhas = [
 
 ?>
 
-
-
 <body>
 
   <?php include '../inc/header.php'; ?>
 
-  <main>
-    <div class="" style="height: 300px; backdrop-filter: brightness(50%); background-image: url(../img/cover.jpg); background-size: cover">
+  <main class="mb-4">
+    <div style="height: 300px; backdrop-filter: brightness(50%); background-image: url(../img/cover.jpg); background-size: cover">
       <div class="w-100 h-100 d-flex justify-content-center align-items-center text-center" style="backdrop-filter: brightness(50%)">
-        <h1 class="position-relative text-white">Móveis</h1>
+        <h1 class="text-white">Móveis</h1>
       </div>
     </div>
     <div class="container mt-4">
