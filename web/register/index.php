@@ -35,6 +35,10 @@
                 <input class="form-control" type="text" name="username" id="username" autocomplete="new-password">
               </div>
               <div class="form-group">
+                <label for="email">Email</label>
+                <input class="form-control" type="email" name="email" id="email" autocomplete="new-password">
+              </div>
+              <div class="form-group">
                 <label for="password">Senha</label>
                 <input class="form-control" type="password" name="password" id="password" autocomplete="new-password">
               </div>
