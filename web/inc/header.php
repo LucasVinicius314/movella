@@ -11,19 +11,19 @@ define('PAGE', $page[0]);
   </button>
   <div class="collapse navbar-collapse" id="basicExampleNav">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item <?= PAGE == 'home' ? 'active' : '' ?>">
-        <a class="nav-link" href="../home">Móveis
-          <?= PAGE == 'home' ? '<span class="sr-only">(current)</span>' : '' ?>
+      <li class="nav-item <?= PAGE == 'moveis' ? 'active' : '' ?>">
+        <a class="nav-link" href="../moveis">Móveis
+          <?= PAGE == 'moveis' ? '<span class="sr-only">(current)</span>' : '' ?>
         </a>
       </li>
-      <li class="nav-item <?= PAGE == 'about' ? 'active' : '' ?>">
-        <a class="nav-link" href="../about">Sobre
-          <?= PAGE == 'about' ? '<span class="sr-only">(current)</span>' : '' ?>
+      <li class="nav-item <?= PAGE == 'sobre' ? 'active' : '' ?>">
+        <a class="nav-link" href="../sobre">Sobre
+          <?= PAGE == 'sobre' ? '<span class="sr-only">(current)</span>' : '' ?>
         </a>
       </li>
-      <li class="nav-item <?= PAGE == 'contact' ? 'active' : '' ?>">
-        <a class="nav-link" href="../contact">Contato
-          <?= PAGE == 'contact' ? '<span class="sr-only">(current)</span>' : '' ?>
+      <li class="nav-item <?= PAGE == 'contato' ? 'active' : '' ?>">
+        <a class="nav-link" href="../contato">Contato
+          <?= PAGE == 'contato' ? '<span class="sr-only">(current)</span>' : '' ?>
         </a>
       </li>
       <li class="nav-item <?= PAGE == 'login' ? 'active' : '' ?>">
@@ -31,9 +31,9 @@ define('PAGE', $page[0]);
           <?= PAGE == 'login' ? '<span class="sr-only">(current)</span>' : '' ?>
         </a>
       </li>
-      <li class="nav-item <?= PAGE == 'register' ? 'active' : '' ?>">
-        <a class="nav-link" href="../register">Criar Conta
-          <?= PAGE == 'register' ? '<span class="sr-only">(current)</span>' : '' ?>
+      <li class="nav-item <?= PAGE == 'signin' ? 'active' : '' ?>">
+        <a class="nav-link" href="../signin">Criar Conta
+          <?= PAGE == 'signin' ? '<span class="sr-only">(current)</span>' : '' ?>
         </a>
       </li>
     </ul>
