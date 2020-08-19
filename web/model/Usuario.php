@@ -30,13 +30,18 @@ class Usuario
 
       $error = Movel::CheckSQL($sql);
 
-      return (object) [
-        'success' => true,
+      if ($error) return (object) [
+        'status' => 403,
         'error' => $error,
+      ];
+
+      return (object) [
+        'status' => 200,
+        'error' => null,
       ];
     } catch (PDOException $ex) {
       return (object) [
-        'success' => false,
+        'status' => 500,
         'error' => $ex,
       ];
     }
@@ -53,21 +58,28 @@ class Usuario
       from
         tbl_usuario
       where id = ?
+      limit 1
       ");
 
       $sql->execute([$id]);
 
       $error = Movel::CheckSQL($sql);
 
-      return (object) [
-        'success' => true,
-        'data' => $sql->fetchObject(),
+      if ($error) return (object) [
+        'status' => 403,
+        'data' => null,
         'error' => $error,
+      ];
+
+      return (object) [
+        'status' => 200,
+        'data' => $sql->fetchObject(),
+        'error' => null,
       ];
     } catch (PDOException $ex) {
       return (object) [
-        'success' => false,
-        'data' => (object) [],
+        'status' => 500,
+        'data' => null,
         'error' => $ex,
       ];
     }
@@ -97,15 +109,61 @@ class Usuario
 
       $error = Movel::CheckSQL($sql);
 
-      return (object) [
-        'success' => true,
-        'data' => $sql->fetchAll(PDO::FETCH_CLASS),
+      if ($error) return (object) [
+        'status' => 403,
+        'data' => (object) [],
         'error' => $error,
+      ];
+
+      return (object) [
+        'status' => 200,
+        'data' => $sql->fetchAll(PDO::FETCH_CLASS),
+        'error' => null,
       ];
     } catch (PDOException $ex) {
       return (object) [
-        'success' => false,
+        'status' => 500,
         'data' => [],
+        'error' => $ex,
+      ];
+    }
+  }
+
+  public static function Login($email, $senha)
+  {
+    try {
+      $conexao = new PDO(SERVER, UID, PASSWORD);
+
+      $sql = $conexao->prepare("
+      select
+        *
+      from
+        tbl_usuario
+      where
+        email = ? and
+        senha = sha1(?)
+      limit 1
+      ");
+
+      $sql->execute([$email, $senha]);
+
+      $error = Movel::CheckSQL($sql);
+
+      if ($error) return (object) [
+        'status' => 403,
+        'data' => null,
+        'error' => $error,
+      ];
+
+      return (object) [
+        'status' => 200,
+        'data' => $sql->fetchObject(),
+        'error' => null,
+      ];
+    } catch (PDOException $ex) {
+      return (object) [
+        'status' => 500,
+        'data' => null,
         'error' => $ex,
       ];
     }

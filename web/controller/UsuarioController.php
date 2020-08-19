@@ -5,7 +5,7 @@ require_once '../model/Categoria.php';
 require_once '../model/Movel.php';
 require_once '../model/Usuario.php';
 
-class MovelController
+class UsuarioController
 {
   public function Create()
   {
@@ -61,14 +61,23 @@ class MovelController
     echo json_encode($res);
   }
 
-  public function _Paginacao()
+  public function Login()
   {
-    $categoria = $_POST['categoria'] ?? 'Mesas';
-    $pagina = (int) $_POST['pagina'] ?? 1;
-    $quantidade = (int) $_POST['quantidade'] ?? 10;
+    $email = $_POST['email'] ?? null;
+    $senha = $_POST['senha'] ?? null;
 
-    $res = Movel::Paginacao($categoria, $pagina, $quantidade);
+    $res = Usuario::Login($email, $senha);
 
-    echo json_encode($res);
+    if ($res->status === 200) {
+      $_SESSION['usuario'] = $res->data;
+      header('location: ../moveis');
+    } else var_dump($res->error);
+  }
+
+  public function index()
+  {
+    //var_dump($_SESSION);
+
+    include 'view_index.php';
   }
 }

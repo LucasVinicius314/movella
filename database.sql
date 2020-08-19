@@ -125,6 +125,16 @@ insert into tbl_categoria (nome) values
 insert into tbl_movel (categoriaId, usuarioId, descricao, imagem, nome, valorMes, disponivel) values
 (1, 4, 'Cadeira plástica azul', 'cadeiraazul.png', 'Cadeira Azul', 14.00, 1),
 (1, 4, 'Cadeira plástica verde', 'cadeiraverde.png', 'Cadeira Verde', 10.00, 1),
+(1, 4, 'Cadeira plástica azul', 'cadeiraazul.png', 'Cadeira Azul', 14.00, 1),
+(1, 4, 'Cadeira plástica verde', 'cadeiraverde.png', 'Cadeira Verde', 10.00, 1),
+(1, 4, 'Cadeira plástica azul', 'cadeiraazul.png', 'Cadeira Azul', 14.00, 1),
+(1, 4, 'Cadeira plástica verde', 'cadeiraverde.png', 'Cadeira Verde', 10.00, 1),
+(1, 4, 'Cadeira plástica azul', 'cadeiraazul.png', 'Cadeira Azul', 14.00, 1),
+(1, 4, 'Cadeira plástica verde', 'cadeiraverde.png', 'Cadeira Verde', 10.00, 1),
+(1, 4, 'Cadeira plástica azul', 'cadeiraazul.png', 'Cadeira Azul', 14.00, 1),
+(1, 4, 'Cadeira plástica verde', 'cadeiraverde.png', 'Cadeira Verde', 10.00, 1),
+(1, 4, 'Cadeira plástica azul', 'cadeiraazul.png', 'Cadeira Azul', 14.00, 1),
+(1, 4, 'Cadeira plástica verde', 'cadeiraverde.png', 'Cadeira Verde', 10.00, 1),
 (2, 4, 'Armário rústico de madeira', 'armario.png', 'Armário Rústico', 30.00, 1),
 (3, 4, 'Mesa metálica', 'mesa.png', 'Mesa Metálica', 25.00, 1);
 

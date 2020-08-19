@@ -31,34 +31,6 @@
     </div>
     <div class="container mt-4">
 
-      <!-- <nav class="d-flex justify-content-center wow fadeIn">
-        <ul class="pagination pg-blue">
-          <li class="page-item disabled">
-            <a class="page-link" href="#" aria-label="Previous">
-              <span aria-hidden="true">&laquo;</span>
-              <span class="sr-only">Previous</span>
-            </a>
-          </li>
-          <li class="page-item active">
-            <a class="page-link" href="#">hoje
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">amanhã</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#">próxima terça</a>
-          </li>
-          <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-              <span aria-hidden="true">&raquo;</span>
-              <span class="sr-only">Next</span>
-            </a>
-          </li>
-        </ul>
-      </nav> -->
-
       <div class="row">
         <div class="col-12 col-md-3">
           <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -75,35 +47,18 @@
         </div>
         <div class="col-12 col-md-9">
           <div class="tab-content" id="v-pills-tabContent">
-
-            <?php foreach ($categorias as $key1 => $item1) { ?>
-
-              <div class="tab-pane fade show <?= $key1 == 0 ? 'active' : '' ?>" id="v-pills-<?= $key1 ?>" role="tabpanel" aria-labelledby="v-pills-<?= $key1 ?>-tab">
-                <div class="row px-1">
-
-                  <?php foreach ($moveis as $key2 => $item2) { 
-                    if ($item2->categoria != $item1->nome) continue;
-                  ?>
-
-                    <div class="col-6 col-md-4 p-1">
-                      <div class="card h-100">
-                        <img class="card-img-top" style="height: 150px; object-fit: contain" src="../img/cover.jpg" alt="Card image cap">
-                        <div class="card-body">
-                          <?= $item2->nome ?>
-                        </div>
-                        <div class="card-footer">
-                          R$ <?= preg_replace('/\./', ',', $item2->valorMes) ?>/mês
-                        </div>
-                      </div>
-                    </div>
-
-                  <?php } ?>
-
-                </div>
-              </div>
-
-            <?php } ?>
-
+            <div class="tab-pane fade show active" id="v-pills-base" role="tabpanel" aria-labelledby="v-pills-base-tab">
+              <nav aria-label="Paginacao">
+                <ul id="pagination" class="pagination">
+                  <li class="page-item" data-role="previous"><a class="page-link">Previous</a></li>
+                  <li class="page-item" data-role="page" data-page="1"><a class="page-link">1</a></li>
+                  <li class="page-item" data-role="page" data-page="2"><a class="page-link">2</a></li>
+                  <li class="page-item" data-role="page" data-page="3"><a class="page-link">3</a></li>
+                  <li class="page-item" data-role="next"><a class="page-link">Next</a></li>
+                </ul>
+              </nav>
+              <div class="row px-1"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -113,6 +68,79 @@
 
     </div>
   </main>
+
+  <script>
+    $(document).ready(() => {
+
+      let categoria = 'Cadeiras'
+      let pagina = 1
+      let quantidade = 2
+
+      function update() {
+        categoria = $(this).text().trim() || categoria
+        pagina = 1
+        $.post('./?action=_Paginacao', {
+            categoria,
+            pagina,
+            quantidade,
+          }, {
+            headers: {
+              'Content-Type': 'application/json; charset=utf-8',
+            },
+          })
+          .then(data => JSON.parse(data))
+          .then(data => {
+            console.log(data);
+            return data
+          })
+          .then(data => {
+            $('#v-pills-base > div').html('')
+            data.data.forEach(v => $('#v-pills-base > div').append(`
+          <div class="col-6 col-md-4 p-1">
+            <div class="card h-100">
+              <img class="card-img-top" style="height: 150px; object-fit: contain" src="../img/${v.imagem}" alt="${v.nome}">
+              <div class="card-body">
+                ${v.nome}
+              </div>
+              <div class="card-footer">
+                R$ ${v.valorMes.replace('.', ',')}/mês
+              </div>
+            </div>
+          </div>
+          `))
+          })
+      }
+
+      $('#v-pills-tab > a').on('click', update)
+
+      $('#pagination > li[data-role="previous"]').on('click', function() {
+
+        pagina--
+
+        update()
+
+      })
+
+      $('#pagination > li[data-role="page"]').on('click', function() {
+
+        pagina = $(this).attr('data-page')
+
+        update()
+
+      })
+
+      $('#pagination > li[data-role="next"]').on('click', function() {
+
+        pagina++
+
+        update()
+
+      })
+
+      update()
+
+    })
+  </script>
 
   <?php include '../inc/footer.php'; ?>
 
