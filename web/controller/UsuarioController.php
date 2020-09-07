@@ -4,6 +4,7 @@ require_once '../model/Aluguel.php';
 require_once '../model/Categoria.php';
 require_once '../model/Movel.php';
 require_once '../model/Usuario.php';
+require_once '../model/Contato.php';
 
 class UsuarioController
 {
@@ -83,8 +84,23 @@ class UsuarioController
 
   public function index()
   {
-    //var_dump($_SESSION);
+    include 'view_index.php';
+  }
 
+  public function _contato()
+  {
+    $nome = $_POST['nome'] ?? null;
+    $email = $_POST['email'] ?? null;
+    $assunto = $_POST['assunto'] ?? null;
+    $mensagem = $_POST['mensagem'] ?? null;
+
+    Contato::Create($nome, $email, $assunto, $mensagem);
+
+    header('location: ../contato');
+  }
+
+  public function contato()
+  {
     include 'view_index.php';
   }
 }

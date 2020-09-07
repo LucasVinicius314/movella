@@ -14,10 +14,20 @@ use movella;
 
 ##### TABLES
 
+create table tbl_contato (
+  id int unsigned not null auto_increment primary key,
+  nome varchar(100) not null,
+  email varchar(100) not null,
+  assunto varchar(50) not null,
+  mensagem varchar(400) not null,
+  data datetime not null default now()
+);
+
 create table tbl_usuario (
   id int unsigned not null auto_increment primary key,
   celular varchar(11),
   email varchar(200) not null,
+  foto varchar(100) not null default 'default.png',
   senha char(40) not null,
   usuario varchar(20) not null,
   acesso int not null default 1,
@@ -157,6 +167,7 @@ select
   u.usuario,
   u.email,
   u.celular,
+  u.foto,
   u.cep,
   u.logradouro,
   u.complemento,
@@ -260,3 +271,4 @@ select * from view_aluguel;
 select * from view_usuario;
 select * from view_denuncia_usuario;
 select * from view_denuncia_movel;
+select * from tbl_contato;

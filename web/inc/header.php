@@ -56,10 +56,14 @@ function greet() {
       <?php } ?>
     </ul>
 
-    <?php if (isset($_SESSION['usuario'])) { ?>
+    <?php if (isset($_SESSION['usuario'])) {
+      
+      $foto = $_SESSION['usuario']->foto;
+
+      ?>
       <div class="d-flex flex-row justify-content-center align-items-center">
         <div class="m-2">
-          <img src="../img/cadeiraverde.png" style="height: 50px; width: 50px; border-radius: 50px" alt="">
+          <img src="../img/<?= $foto ?>" style="height: 50px; width: 50px; border-radius: 50px; object-fit: cover" alt="">
         </div>
         <div class="text-white">
           <h5>

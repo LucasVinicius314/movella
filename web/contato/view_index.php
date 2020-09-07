@@ -30,26 +30,26 @@
       </div>
     </div>
     <div class="container mt-4">
-      <form action="" method="post">
+      <form action="?action=_contato" method="post">
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
               <label for="nome">Nome*</label>
-              <input class="form-control" type="text" name="nome" id="nome" required>
+              <input class="form-control" type="text" name="nome" id="nome" maxlength="100" required>
             </div>
             <div class="form-group">
               <label for="email">E-mail*</label>
-              <input class="form-control" type="email" name="email" id="email" required>
+              <input class="form-control" type="email" name="email" id="email" maxlength="100" required>
             </div>
             <div class="form-group">
               <label for="assunto">Assunto*</label>
-              <input class="form-control" type="text" name="assunto" id="assunto" required>
+              <input class="form-control" type="text" name="assunto" id="assunto" maxlength="50" required>
             </div>
           </div>
           <div class="col-md-6">
             <div class="form-group h-100">
               <label for="mensagem">Mensagem*</label>
-                <textarea class="form-control" style="height: 210px; min-height: 38px" name="mensagem" id="mensagem" required></textarea>
+                <textarea class="form-control" style="height: 210px; min-height: 38px" name="mensagem" id="mensagem" maxlength="400" required></textarea>
             </div>
           </div>
           <div class="col-6"></div>
