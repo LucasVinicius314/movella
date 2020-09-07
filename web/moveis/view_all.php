@@ -74,11 +74,11 @@
 
       let categoria = 'Cadeiras'
       let pagina = 1
-      let quantidade = 2
+      let quantidade = 4
 
       function update() {
         categoria = $(this).text().trim() || categoria
-        pagina = 1
+        pagina = pagina <= 1 ? 1 : pagina
         $.post('./?action=_Paginacao', {
             categoria,
             pagina,
@@ -90,23 +90,23 @@
           })
           .then(data => JSON.parse(data))
           .then(data => {
-            console.log(data);
+            console.log(data)
             return data
           })
           .then(data => {
             $('#v-pills-base > div').html('')
             data.data.forEach(v => $('#v-pills-base > div').append(`
-          <div class="col-6 col-md-4 p-1">
-            <div class="card h-100">
-              <img class="card-img-top" style="height: 150px; object-fit: contain" src="../img/${v.imagem}" alt="${v.nome}">
-              <div class="card-body">
-                ${v.nome}
+              <div class="col-6 col-md-4 p-1">
+                <div class="card h-100">
+                  <img class="card-img-top" style="height: 150px; object-fit: contain" src="../img/${v.imagem}" alt="${v.nome}">
+                  <div class="card-body">
+                    ${v.nome}
+                  </div>
+                  <div class="card-footer">
+                    R$ ${v.valorMes.replace('.', ',')}/mês
+                  </div>
+                </div>
               </div>
-              <div class="card-footer">
-                R$ ${v.valorMes.replace('.', ',')}/mês
-              </div>
-            </div>
-          </div>
           `))
           })
       }
