@@ -74,6 +74,13 @@ class UsuarioController
     } else var_dump($res->error);
   }
 
+  public function Logout()
+  {
+    unset($_SESSION['usuario']);
+
+    header('location: ../moveis');
+  }
+
   public function index()
   {
     //var_dump($_SESSION);

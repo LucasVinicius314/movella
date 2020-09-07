@@ -101,6 +101,10 @@
                   <img class="card-img-top" style="height: 150px; object-fit: contain" src="../img/${v.imagem}" alt="${v.nome}">
                   <div class="card-body">
                     ${v.nome}
+                    <br>
+                    <small>${v.cidade}</small>
+                    <br>
+                    <small>Por: ${v.usuario}</small>
                   </div>
                   <div class="card-footer">
                     R$ ${v.valorMes.replace('.', ',')}/mês

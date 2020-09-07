@@ -18,10 +18,16 @@ create table tbl_usuario (
   id int unsigned not null auto_increment primary key,
   celular varchar(11),
   email varchar(200) not null,
-  endereco varchar(200),
   senha char(40) not null,
   usuario varchar(20) not null,
-  acesso int not null default 1
+  acesso int not null default 1,
+  -- endereco
+  cep char(8),
+  logradouro varchar(200),
+  complemento varchar(100),
+  bairro varchar(100),
+  cidade varchar(100),
+  uf char(2)
 );
 
 create table tbl_categoria (
@@ -118,7 +124,9 @@ select
   m.descricao,
   m.imagem,
   m.valorMes,
-  m.disponivel
+  m.disponivel,
+  m.id,
+  u.cidade
 from tbl_movel m
 join tbl_categoria c on m.categoriaId = c.id
 join tbl_usuario u on m.usuarioId = u.id;
@@ -149,7 +157,12 @@ select
   u.usuario,
   u.email,
   u.celular,
-  u.endereco,
+  u.cep,
+  u.logradouro,
+  u.complemento,
+  u.bairro,
+  u.cidade,
+  u.uf,
   u.acesso,
   floor((sum(a.avaliacao) / count(a.avaliacao)) * 10) / 10 as avaliacao,
   count(a.avaliacao) as avaliacoes
@@ -189,11 +202,11 @@ join tbl_movel m on d.movelId = m.id;
 
 ##### INSERTS
 
-insert into tbl_usuario (celular, email, endereco, senha, usuario, acesso) values
-('00000000000', 'admin@gmail.com', 'Endereço', sha1('1234'), 'admin', 3),
-('31912345678', 'pedro@gmail.com', 'Rua 1', sha1('1234'), 'Pedro', 1),
-('31912345678', 'caio@gmail.com', 'Rua 2', sha1('1234'), 'Caio', 1),
-('31912345678', 'caique@gmail.com', 'Rua 3', sha1('1234'), 'Caique', 2);
+insert into tbl_usuario (celular, email, senha, usuario, acesso, cep, logradouro, complemento, bairro, cidade, uf) values
+('00000000000', 'admin@gmail.com', sha1('1234'), 'admin', 3, null, null, null, null, null, null),
+('31912345678', 'pedro@gmail.com', sha1('1234'), 'Pedro', 1, null, null, null, null, null, null),
+('31912345678', 'caio@gmail.com', sha1('1234'), 'Caio', 1, null, null, null, null, null, null),
+('31912345678', 'caique@gmail.com', sha1('1234'), 'Caique', 2, '32050360', 'Rua Ápio Cardoso', '', 'Nova Contagem', 'Contagem', 'MG');
 
 insert into tbl_categoria (nome) values
 ('Cadeiras'),

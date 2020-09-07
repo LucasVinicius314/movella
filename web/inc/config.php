@@ -6,6 +6,8 @@ $password = '';
 
 header("Content-Type: text/html; charset=utf8");
 
+date_default_timezone_set('America/Sao_Paulo');
+
 session_start();
 
 ini_set('display_errors', 1);
