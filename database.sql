@@ -61,7 +61,10 @@ create table tbl_movel (
   imagem varchar(100) not null default 'default.png',
   nome varchar(40) not null,
   valorMes double(9, 2) not null,
-  disponivel bool not null
+  disponivel bool not null,
+  altura double not null,
+  largura double not null,
+  espessura double not null
 );
 
 create table tbl_aluguel (
@@ -229,13 +232,13 @@ insert into tbl_avaliacao (avaliacao, avaliadorId, avaliadoId) values
 (4, 3, 2),
 (5, 2, 1);
 
-insert into tbl_movel (categoriaId, usuarioId, descricao, imagem, nome, valorMes, disponivel) values
-(1, 4, 'Cadeira plástica azul', 'cadeiraazul.png', 'Cadeira Azul', 14.00, 1),
-(1, 4, 'Cadeira plástica verde', 'cadeiraverde.png', 'Cadeira Verde', 10.00, 1),
-(1, 4, 'Cadeira plástica vermelha', 'cadeiravermelha.png', 'Cadeira Vermelha', 15.00, 1),
-(1, 4, 'Cadeira estofada', 'cadeiraestofada.png', 'Cadeira Estofada', 10.00, 1),
-(1, 4, 'Cadeira sem encosto', 'cadeirasemencosto.png', 'Cadeira Sem Encosto', 14.00, 1),
-(1, 4, 'Cadeira giratória', 'cadeiragiratoria.png', 'Cadeira Giratória', 10.00, 1),
+insert into tbl_movel (categoriaId, usuarioId, descricao, imagem, nome, valorMes, disponivel, altura, largura, espessura) values
+(1, 4, 'Cadeira plástica azul', 'cadeiraazul.png', 'Cadeira Azul', 14.00, 1, 1.2, 0.5, 0.6),
+(1, 4, 'Cadeira plástica verde', 'cadeiraverde.png', 'Cadeira Verde', 10.00, 1, 1.2, 0.5, 0.6),
+(1, 4, 'Cadeira plástica vermelha', 'cadeiravermelha.png', 'Cadeira Vermelha', 15.00, 1, 1.2, 0.5, 0.6),
+(1, 4, 'Cadeira estofada', 'cadeiraestofada.png', 'Cadeira Estofada', 10.00, 1, 1.2, 0.5, 0.6),
+(1, 4, 'Cadeira sem encosto', 'cadeirasemencosto.png', 'Cadeira Sem Encosto', 14.00, 1, 1.2, 0.5, 0.6),
+(1, 4, 'Cadeira giratória', 'cadeiragiratoria.png', 'Cadeira Giratória', 10.00, 1, 1.2, 0.5, 0.6),
 
 -- (1, 4, 'Cadeira plástica azul', 'cadeiraazul.png', 'Cadeira Azul', 14.00, 1),
 -- (1, 4, 'Cadeira plástica verde', 'cadeiraverde.png', 'Cadeira Verde', 10.00, 1),
@@ -244,8 +247,8 @@ insert into tbl_movel (categoriaId, usuarioId, descricao, imagem, nome, valorMes
 -- (1, 4, 'Cadeira plástica azul', 'cadeiraazul.png', 'Cadeira Azul', 14.00, 1),
 -- (1, 4, 'Cadeira plástica verde', 'cadeiraverde.png', 'Cadeira Verde', 10.00, 1),
 
-(2, 4, 'Armário rústico de madeira', 'armario.png', 'Armário Rústico', 30.00, 1),
-(3, 4, 'Mesa metálica', 'mesa.png', 'Mesa Metálica', 25.00, 1);
+(2, 4, 'Armário rústico de madeira', 'armario.png', 'Armário Rústico', 30.00, 1, 2.0, 1.4, 0.9),
+(3, 4, 'Mesa metálica', 'mesa.png', 'Mesa Metálica', 25.00, 1, 1.0, 0.9, 0.9);
 
 insert into tbl_aluguel (movelId, usuarioId, dataFim, valorFrete) values
 (1, 2, '2020-08-17', 14.00),

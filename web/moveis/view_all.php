@@ -31,6 +31,26 @@
     </div>
     <div class="container mt-4">
 
+      <div class="modal" tabindex="-1" role="dialog" data-backdrop="static">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Móvel</h5>
+              <button type="button" class="close modal-fechar" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>Alugue este móvel.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary bg-primary modal-alugar">Alugar</button>
+              <button type="button" class="btn btn-secondary bg-secondary modal-fechar" data-dismiss="modal">Fechar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-12 col-md-3">
           <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -96,7 +116,7 @@
           .then(data => {
             $('#v-pills-base > div').html('')
             data.data.forEach(v => $('#v-pills-base > div').append(`
-              <div class="col-6 col-md-4 p-1">
+              <div class="col-6 col-md-4 p-1 movel" data-nome="${v.nome}">
                 <div class="card h-100">
                   <img class="card-img-top" style="height: 150px; object-fit: contain" src="../img/${v.imagem}" alt="${v.nome}">
                   <div class="card-body">
@@ -112,36 +132,44 @@
                 </div>
               </div>
           `))
+            $('.movel').on('click', function () {
+              $('.modal').show()
+              $('.modal-body').html(`
+                <div class="row">
+                  <div class="col-6">
+                  <h2>${$(this).attr('data-nome')}</h2>
+                  <p>Alugue este móvel.</p>
+                  </div>
+                  <div class="col-6">
+                    <img class="w-100 h-100" />
+                  </div>
+                </div>
+
+              `)
+            })
           })
       }
 
       $('#v-pills-tab > a').on('click', update)
 
       $('#pagination > li[data-role="previous"]').on('click', function() {
-
         pagina--
-
         update()
-
       })
 
       $('#pagination > li[data-role="page"]').on('click', function() {
-
         pagina = $(this).attr('data-page')
-
         update()
-
       })
 
       $('#pagination > li[data-role="next"]').on('click', function() {
-
         pagina++
-
         update()
-
       })
 
       update()
+
+      $('.modal-fechar, .modal-fechar').on('click', () => $('.modal').hide())
 
     })
   </script>

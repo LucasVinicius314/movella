@@ -49,7 +49,7 @@
           <div class="col-md-6">
             <div class="form-group h-100">
               <label for="mensagem">Mensagem*</label>
-                <textarea class="form-control" style="height: 210px; min-height: 38px" name="mensagem" id="mensagem" maxlength="400" required></textarea>
+              <textarea class="form-control" style="height: 210px; min-height: 38px" name="mensagem" id="mensagem" maxlength="400" required></textarea>
             </div>
           </div>
           <div class="col-6"></div>
