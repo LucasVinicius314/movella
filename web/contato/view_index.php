@@ -23,6 +23,14 @@
 
   <?php include '../inc/header.php'; ?>
 
+  <?php
+  if (isset($_SESSION['msg']) && $_SESSION['msg'] !== false) {
+    $msg = $_SESSION['msg'];
+    echo "<script>alert('$msg')</script>";
+    unset($_SESSION['msg']);
+  }
+  ?>
+
   <main>
     <div style="height: 300px; backdrop-filter: brightness(50%); background-image: url(../img/cover.jpg); background-size: cover">
       <div class="w-100 h-100 d-flex justify-content-center align-items-center text-center" style="backdrop-filter: brightness(50%)">

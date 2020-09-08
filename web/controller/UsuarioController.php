@@ -10,8 +10,15 @@ class UsuarioController
 {
   public function Create()
   {
-    echo 'wip';
-    //include 'view_create.php';
+    $celular = '00000000000';
+    $email = $_POST['email'] ?? null;
+    $senha = $_POST['senha'] ?? null;
+    $imagem = $_POST['imagem'] ?? null;
+    $nome = $_POST['nome'] ?? null;
+    $valorMes = $_POST['valorMes'] ?? null;
+    $disponivel = $_POST['disponivel'] ?? null;
+
+    //$res = Movel::Create($categoriaId, $usuarioId, $descricao, $imagem, $nome, $valorMes, $disponivel);
   }
 
   public function Read()
@@ -67,12 +74,21 @@ class UsuarioController
     $email = $_POST['email'] ?? null;
     $senha = $_POST['senha'] ?? null;
 
-    $res = Usuario::Login($email, $senha);
+    if (isset($_POST['email']) && isset($_POST['senha'])) {
 
-    if ($res->status === 200) {
-      $_SESSION['usuario'] = $res->data;
-      header('location: ../moveis');
-    } else var_dump($res->error);
+      $res = Usuario::Login($email, $senha);
+      
+      if ($res->error) { 
+        $_SESSION['msg'] = $res->error;
+        header('location: ./');
+      }
+      else {
+        $_SESSION['usuario'] = $res->data;
+        $_SESSION['msg'] = 'Login efetuado';
+        header('location: ../moveis');
+      }
+
+    }
   }
 
   public function Logout()
@@ -85,6 +101,30 @@ class UsuarioController
   public function index()
   {
     include 'view_index.php';
+  }
+
+  public function signin()
+  {
+    include 'view_index.php';
+  }
+
+  public function _signin()
+  {
+    $username = $_POST['username'] ?? null;
+    $email = $_POST['email'] ?? null;
+    $password = $_POST['password'] ?? null;
+    $repeatpassword = $_POST['repeat-password'] ?? null;
+
+    $res = Usuario::Create('00000000000', $email, $password, $repeatpassword, $username, 1);
+
+    if ($res->error) { 
+      $_SESSION['msg'] = $res->error->getMessage();
+      header('location: ./');
+    }
+    else {
+      $_SESSION['msg'] = 'Conta registrada';
+      header('location: ../login');
+    }
   }
 
   public function _contato()

@@ -38,7 +38,7 @@ function greet() {
           <?= PAGE == 'contato' ? '<span class="sr-only">(current)</span>' : '' ?>
         </a>
       </li>
-      <?php if (isset($_SESSION['usuario'])) { ?>
+      <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario'] != false) { ?>
         <li class="nav-item">
           <a class="nav-link" href="../logout">Sair</a>
         </li>
@@ -56,9 +56,10 @@ function greet() {
       <?php } ?>
     </ul>
 
-    <?php if (isset($_SESSION['usuario'])) {
+    <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario'] != false) {
       
-      $foto = $_SESSION['usuario']->foto;
+      $foto = $_SESSION['usuario']->foto ?? '';
+      $usuario = $_SESSION['usuario']->usuario ?? '';
 
       ?>
       <div class="d-flex flex-row justify-content-center align-items-center">
@@ -67,7 +68,7 @@ function greet() {
         </div>
         <div class="text-white">
           <h5>
-            <?= greet() ?> <?= isset($_SESSION['usuario']) ? $_SESSION['usuario']->usuario : '' ?>
+            <?= greet() ?> <?= $_SESSION['usuario']->usuario ?>
           </h5>
         </div>
       </div>

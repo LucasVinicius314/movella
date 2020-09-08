@@ -2,27 +2,33 @@
 
 class Usuario
 {
-  public static function Create($celular, $email, $endereco, $senha, $usuario, $acesso)
+  public static function Create($celular, $email, $senha, $repeatsenha, $usuario, $acesso)
   {
     try {
       $conexao = new PDO(SERVER, UID, PASSWORD);
 
+      if ($celular == null) throw new Exception("Celular vazio");
+      if ($email == null) throw new Exception("Email vazio");
+      if ($senha == null) throw new Exception("Senha vazia");
+      if ($repeatsenha == null) throw new Exception("Repetição de senha vazia");
+      if ($usuario == null) throw new Exception("Usuario vazio");
+
+      if ($senha !== $repeatsenha) throw new Exception("Senha não confere");
+
       $sql = $conexao->prepare("
       insert into tbl_usuario (
-        celular
-        email
-        endereco
-        senha
-        usuario
+        celular,
+        email,
+        senha,
+        usuario,
         acesso
       )
-      values (?, ?, ?, ?, ?, ?)
+      values (?, ?, sha1(?), ?, ?)
       ");
 
       $sql->execute([
         $celular,
         $email,
-        $endereco,
         $senha,
         $usuario,
         $acesso,
@@ -40,6 +46,11 @@ class Usuario
         'error' => null,
       ];
     } catch (PDOException $ex) {
+      return (object) [
+        'status' => 500,
+        'error' => $ex,
+      ];
+    } catch (Exception $ex) {
       return (object) [
         'status' => 500,
         'error' => $ex,
@@ -149,6 +160,10 @@ class Usuario
 
       $error = Movel::CheckSQL($sql);
 
+      $res = $sql->fetchObject();
+
+      if ($res === false) throw new Exception('Senha incorreta ou usuário não existente');
+
       if ($error) return (object) [
         'status' => 403,
         'data' => null,
@@ -157,14 +172,21 @@ class Usuario
 
       return (object) [
         'status' => 200,
-        'data' => $sql->fetchObject(),
+        'data' => $res,
         'error' => null,
       ];
     } catch (PDOException $ex) {
       return (object) [
         'status' => 500,
         'data' => null,
-        'error' => $ex,
+        'error' => $ex->getMessage(),
+      ];
+    }
+    catch (Exception $ex) {
+      return (object) [
+        'status' => 500,
+        'data' => null,
+        'error' => $ex->getMessage(),
       ];
     }
   }

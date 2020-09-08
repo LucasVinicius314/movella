@@ -34,21 +34,29 @@
   <main>
     <div style="height: 100vh; backdrop-filter: brightness(50%); background-image: url(../img/cover.jpg); background-size: cover">
       <div class="w-100 h-100 d-flex flex-column justify-content-center align-items-center text-center" style="backdrop-filter: brightness(50%)">
-        <h1 class="text-white">Entrar</h1>
-        <form method="post" action="./?action=Login">
+        <h1 class="text-white">Criar Conta</h1>
+        <form action="./?action=_signin" method="post">
           <div class="card my-4 text-left">
             <div class="card-body">
               <div class="form-group">
-                <label for="email">Email</label>
-                <input class="form-control" type="email" name="email" id="email">
+                <label for="username">Usuário</label>
+                <input class="form-control" type="text" name="username" id="username" autocomplete="new-password" required>
               </div>
               <div class="form-group">
-                <label for="senha">Senha</label>
-                <input class="form-control" type="password" name="senha" id="senha">
+                <label for="email">Email</label>
+                <input class="form-control" type="email" name="email" id="email" autocomplete="new-password" required>
+              </div>
+              <div class="form-group">
+                <label for="password">Senha</label>
+                <input class="form-control" type="password" name="password" id="password" autocomplete="new-password" required>
+              </div>
+              <div class="form-group">
+                <label for="repeat-password">Repetir Senha</label>
+                <input class="form-control" type="password" name="repeat-password" id="repeat-password" autocomplete="new-password" required>
               </div>
             </div>
           </div>
-          <input class="btn btn-lg btn-primary bg-primary" type="submit" value="Entrar">
+          <input class="btn btn-lg btn-primary bg-primary" type="submit" value="Criar Conta">
         </form>
       </div>
     </div>
