@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "movella-app",
+    "slug": "movella-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/logo.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "br.com.movella.app"
+    },
+    "web": {
+      "favicon": "./assets/logo.png"
+    }
+  }
+}
