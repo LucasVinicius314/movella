@@ -116,7 +116,7 @@
           .then(data => {
             $('#v-pills-base > div').html('')
             data.data.forEach(v => $('#v-pills-base > div').append(`
-              <div class="col-6 col-md-4 p-1 movel" data-nome="${v.nome}">
+              <div class="col-6 col-md-4 p-1 movel" data-nome="${v.nome}" data-descricao="${v.descricao}" data-imagem="${v.imagem}">
                 <div class="card h-100">
                   <img class="card-img-top" style="height: 150px; object-fit: contain" src="../img/${v.imagem}" alt="${v.nome}">
                   <div class="card-body">
@@ -137,11 +137,11 @@
               $('.modal-body').html(`
                 <div class="row">
                   <div class="col-6">
-                  <h2>${$(this).attr('data-nome')}</h2>
-                  <p>Alugue este móvel.</p>
+                    <h2>${$(this).attr('data-nome')}</h2>
+                    <p>${$(this).attr('data-descricao')}</p>
                   </div>
                   <div class="col-6">
-                    <img class="w-100 h-100" />
+                    <img class="w-100 h-100" src="../img/${$(this).attr('data-imagem')}" />
                   </div>
                 </div>
 

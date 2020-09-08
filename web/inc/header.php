@@ -67,7 +67,7 @@ function greet() {
         </div>
         <div class="text-white">
           <h5>
-            <?= greet() ?> <?= $_SESSION['usuario']->usuario ?>
+            <?= greet() ?> <?= isset($_SESSION['usuario']) ? $_SESSION['usuario']->usuario : '' ?>
           </h5>
         </div>
       </div>
